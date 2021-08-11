@@ -16,13 +16,3 @@ You can install the released version of STAT302PACKAGE using:
 ``` r
 devtools::install_github("dzeng8/STAT302PACKAGE")
 ```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(STAT302PACKAGE)
-## basic example code
-```
-
