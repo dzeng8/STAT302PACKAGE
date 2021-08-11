@@ -13,7 +13,7 @@ You can install the released version of STAT302PACKAGE using:
 
 
 ``` r
-devtools::install_github("dzeng/STAT302PACKAGE")
+devtools::install_github("dzeng8/STAT302PACKAGE")
 ```
 
 ## Example
