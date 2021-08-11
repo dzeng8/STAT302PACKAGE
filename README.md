@@ -19,7 +19,7 @@ devtools::install_github("dzeng8/STAT302PACKAGE")
 
 To view vignettes, run the following code:
 
-```{r}
+``` r
 devtools::install_github("dzeng8/STAT302PACKAGE", build_vignette = TRUE, build_opts = c())
 library(STAT302PACKAGE)
 # Use this to view the vignette in the STAT302PACKAGE HTML help
