@@ -3,3 +3,5 @@
 export(f_to_c)
 export(my_pow)
 export(my_t.test)
+importFrom(stats,pt)
+importFrom(stats,sd)
