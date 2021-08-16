@@ -44,13 +44,3 @@ my_t.test <- function(x, alternative, mu) {
                   "p-value" = p_val)
   return(summary)
 }
-
-# This t test function takes input data, a character value representing a hypothesis
-# test, and a null hypothesis value. Returns a list of the computed t statistic,
-# the degrees of freedom, the character value representing the hypothesis test,
-# and the computed p value
-# Input: A numeric vector of input data, a character representing the hypothesis
-#        test we want to compute
-# Output: Returns a list of the computed t statistic, the degrees of freedom,
-#         the character value representing the hypothesis test,
-#         and the computed p value
