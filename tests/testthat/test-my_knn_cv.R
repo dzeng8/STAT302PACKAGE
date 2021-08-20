@@ -2,7 +2,7 @@
 
 # load data to be tested
 data("my_penguins")
-data <- penguins[c("bill_length_mm",
+data <- my_penguins[c("bill_length_mm",
                    "bill_depth_mm",
                    "flipper_length_mm",
                    "body_mass_g",
