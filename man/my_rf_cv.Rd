@@ -20,8 +20,8 @@ body_mass_g ~ bill_length_mm + bill_depth_mm + flipper_length_mm
 and number of trees is 100. User can specify the number of folds to be used.
 }
 \examples{
-my_rf_cv(1)
 my_rf_cv(5)
+my_rf_cv(10)
 
 }
 \keyword{prediction}
