@@ -2,7 +2,7 @@
 % Please edit documentation in R/my_lm.R
 \name{my_lm}
 \alias{my_lm}
-\title{lm}
+\title{linear model}
 \usage{
 my_lm(formula, data)
 }
@@ -25,8 +25,7 @@ data(mtcars)
 my_lm(mpg ~ hp + wt, data = mtcars)
 
 }
-\keyword{inference,}
-\keyword{linear}
-\keyword{model,}
+\keyword{inference}
+\keyword{linear-model}
 \keyword{prediction}
-\keyword{regression,}
+\keyword{regression}

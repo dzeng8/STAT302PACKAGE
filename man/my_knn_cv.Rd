@@ -45,10 +45,7 @@ results_1nn_5cv <- my_knn_cv(train, cl, 1, 5)
 results_5nn_5cv <- my_knn_cv(train, cl, 5, 5)
 
 }
-\keyword{cross}
-\keyword{fold,}
-\keyword{k}
-\keyword{nearest}
-\keyword{neighbors,}
+\keyword{cross-validation}
+\keyword{k-fold}
+\keyword{k-nearest-neighbors}
 \keyword{prediction}
-\keyword{validation,}
