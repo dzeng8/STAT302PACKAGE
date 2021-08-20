@@ -13,5 +13,4 @@ test_that("output is correct for given test cases", {
   expect_equal(my_t.test(x, "two.sided", 0)$'p-value', t.test(x, mu = 0, alternative="two.sided")$'p.value')
   expect_equal(my_t.test(x, "less", 0)$'p-value', t.test(x, mu = 0, alternative="less")$'p.value')
   expect_equal(my_t.test(x, "greater", 0)$'p-value', t.test(x, mu = 0, alternative="greater")$'p.value')
-
 })
