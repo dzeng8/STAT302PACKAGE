@@ -16,7 +16,7 @@
 #' cross-validation misclassification error rate
 #'
 #' @examples
-#' data(my_penguins)
+#' data("my_penguins")
 #' data <- my_penguins[c("bill_length_mm",
 #'                   "bill_depth_mm",
 #'                   "flipper_length_mm",

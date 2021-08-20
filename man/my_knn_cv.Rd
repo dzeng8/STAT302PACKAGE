@@ -27,7 +27,7 @@ the number of folds to be used for k-fold cross validation and performs
 k-fold cross validation from the given input data
 }
 \examples{
-data(my_penguins)
+data("my_penguins")
 data <- my_penguins[c("bill_length_mm",
                   "bill_depth_mm",
                   "flipper_length_mm",
