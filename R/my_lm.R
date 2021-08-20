@@ -1,4 +1,4 @@
-#' lm
+#' linear model
 #'
 #' This function takes a formula and input data and
 #' fits a linear regression model of the data to the formula,
