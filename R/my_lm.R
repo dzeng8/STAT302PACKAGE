@@ -5,15 +5,18 @@
 #' providing summary statistics.
 #'
 #' @param formula formula to fit the input data to
-#' @param data data frame
-
-# my_lm is a function which takes a formula and input data and
-# fits a linear regression model of the data to the formula,
-# providing summary statistics.
-# Input: a formula indicating the linear model, and data
-#        representing the input data
-# Output: A table of the parameters and their estimated values,
-#         Standard errors, t values, and p values
+#' @param data input data frame
+#' @keywords linear model, regression, inference, prediction
+#'
+#' @importFrom stats model.frame model.matrix model.response
+#' @return A table of the parameters of the model and their respective
+#' estimated values, standard errors, t values, and p values
+#'
+#' @example
+#' data(mtcars)
+#' my_lm(mpg ~ hp + wt, data = mtcars)
+#'
+#' @export
 my_lm <- function(formula, data) {
   # extract x and y matrices
   x <- model.matrix(formula, data)

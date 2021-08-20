@@ -30,6 +30,7 @@ my_t.test(x, "greater", 0)
 my_t.test(x, "two.sided", 0)
 
 }
+\keyword{inference}
 \keyword{statistical}
 \keyword{t-test,}
-\keyword{test}
+\keyword{test,}
