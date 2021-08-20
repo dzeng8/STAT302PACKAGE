@@ -9,7 +9,7 @@
 #' @param k_nn a numeric representing the desired number of nearest neighbors
 #' @param k_cv a numeric representing the number of folds to be used for k-fold
 #' cross validation
-#' @keywords k nearest neighbors, cross validation, k fold, prediction
+#' @keywords k-nearest-neighbors cross-validation k-fold prediction
 #'
 #' @return A list of two objects where the first object are the predicted outcomes
 #' based on the input data and the second object is the average

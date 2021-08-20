@@ -8,7 +8,7 @@
 #' @param alternative A character representing the hypothesis
 #'        test we want to compute: "two.sided", "less", or "greater
 #' @param mu A number indicating the null hypothesis value of the mean
-#' @keywords t-test, statistical test, inference
+#' @keywords t-test inference
 #'
 #' @importFrom stats pt sd
 #'

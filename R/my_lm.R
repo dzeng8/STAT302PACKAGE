@@ -6,7 +6,7 @@
 #'
 #' @param formula formula to fit the input data to
 #' @param data input data frame
-#' @keywords linear model, regression, inference, prediction
+#' @keywords linear-model regression inference prediction
 #'
 #' @importFrom stats model.frame model.matrix model.response
 #'
