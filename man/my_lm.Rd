@@ -20,6 +20,11 @@ This function takes a formula and input data and
 fits a linear regression model of the data to the formula,
 providing summary statistics.
 }
+\examples{
+data(mtcars)
+my_lm(mpg ~ hp + wt, data = mtcars)
+
+}
 \keyword{inference,}
 \keyword{linear}
 \keyword{model,}

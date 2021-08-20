@@ -23,4 +23,6 @@ Depends:
 VignetteBuilder: knitr
 Imports: 
     dplyr,
-    tibble
+    class,
+    tibble,
+    magrittr

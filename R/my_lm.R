@@ -9,10 +9,11 @@
 #' @keywords linear model, regression, inference, prediction
 #'
 #' @importFrom stats model.frame model.matrix model.response
+#'
 #' @return A table of the parameters of the model and their respective
 #' estimated values, standard errors, t values, and p values
 #'
-#' @example
+#' @examples
 #' data(mtcars)
 #' my_lm(mpg ~ hp + wt, data = mtcars)
 #'
