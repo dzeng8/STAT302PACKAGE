@@ -98,3 +98,58 @@ the mean life expectancy is 60 years in support of the alternative hypothesis
 that the mean life expectancy is greater than 60 years.
 
 # ```my_lm``` Tutorial
+
+We demonstrate the ```my_lm``` function by fitting a model from the 
+```my_gapminder``` dataset. The model will predict ```lifeExp``` using
+```gdpPercap``` and ```continent``` as the explanatory variables.
+
+```{r}
+# fit the linear model lifeExp ~ gdpPercap + continent on the my_gapminder dataset
+results <- my_lm(lifeExp ~ gdpPercap + continent, data = my_gapminder)
+results
+```
+
+See that the coefficient on the ```gdpPercap``` variable is `r results[2, 1]`, 
+which can be interpreted as meaning life expectancy is expected to increase 
+by `r results[2, 1]` years per unit increase in ```gdpPercap```.
+
+We can see that the hypothesis test associated with ```gdpPercap``` is
+$H_0 : \beta_{gdpPercap} = 0$ and $H_a : \beta_{gdpPercap} \neq 0$. In other words,
+the null hypothesis is that the coefficient of ```gdpPercap``` is equal to 0
+while the alternative hypothesis is that the coefficient is not equal to 0. 
+
+Using a p-value cut-off of $\alpha = 0.05$, we can see that the p-value of
+`r results[2, 4]` allows us to reject the null hypothesis. In other words, 
+the ```gdpPercap``` predictor is statistically significant. 
+
+We plot the actual vs fitted values of this linear model.
+
+```{r, fig.width=7, fig.height=5}
+# create data frame of actual vs fitted values, also adding continent column
+X <- model.matrix(lifeExp ~ gdpPercap + continent, data = my_gapminder)
+beta <- results[, 1]
+fitted_values <- X %*% beta
+actual_vs_fitted_df <- data.frame(fitted = fitted_values,
+                                  actual = my_gapminder$lifeExp,
+                                  continent = my_gapminder$continent)
+# plot actual vs fitted values
+ggplot2::ggplot(actual_vs_fitted_df, 
+                ggplot2::aes(x = fitted, 
+                             y = actual,
+                             col = continent)) +
+  ggplot2::labs(title = "Actual vs Fitted Values", 
+                x = "Fitted Values",
+                y = "Actual values") + 
+  ggplot2::geom_point() + 
+  ggplot2::geom_abline() + 
+  ggplot2::theme_bw()
+```
+
+When we plot the actual vs fitted values with a reference line ```y = x```, we 
+can conclude that points on the line are points where our model correctly predicts
+the actual value. We can see that our model does not do well in predicting the
+life expectancy for the continents Africa, Americas, and Asia but does somewhat
+well in predicting the life expectancy for the continents Europe and Oceania. 
+We conclude that the model fits well to the data for Europe and Oceania, but 
+not to the data for Africa, Americas, and Asia.
+
