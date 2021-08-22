@@ -21,7 +21,7 @@ library(STAT302PACKAGE)
 
 # Introduction
 
-The STAT302PACKAGE contains four main functions (in addition to some 
+The STAT302PACKAGE contains data and four main functions (in addition to some 
 other minor ones):
 
 * ```my_t.test```, a function which computes a one sample t-test 
@@ -41,3 +41,60 @@ library(STAT302PACKAGE)
 
 # ```my_t.test``` Tutorial
 
+We will demonstrate the ```my_t.test``` function with ```lifeExp``` data from
+the ```my_gapminder``` dataset. 
+
+The input data are measurements of people's life expectancy at birth, in years.
+
+### two-sided Test
+
+We run a t-test with the null hypothesis that the mean life expectancy is 60 years,
+with the alternative hypothesis being that the life expectancy is not 60 years.
+
+```{r}
+# run two-sided t-test with null hypothesis of mean as 60
+results <- my_t.test(my_gapminder$lifeExp, "two.sided", 60)
+results
+```
+
+Using a p-value cut-off at $\alpha = 0.05$, we can see that a p-value of 
+`r results[[4]]` implies that we cannot
+reject the null hypothesis. In other words, there is no evidence to reject the
+null hypothesis that the mean life expectancy is 60 in support of the alternative
+hypothesis that the mean life expectancy is not 60.
+
+### one-sided test, less
+
+We run a t-test with the null hypothesis that the mean life expectancy is 60 years,
+with the alternative hypothesis being that the life expectancy is less than 60 years.
+
+```{r}
+# run one-sided t-test with null hypothesis of mean as 60, alternative less than 60
+results <- my_t.test(my_gapminder$lifeExp, "less", 60)
+results
+```
+
+Using a p-value cut-off at $\alpha = 0.05$, we can see that a p-value of 
+`r results[[4]]` implies that we can reject the null hypothesis. 
+In other words, we have sufficient evidence to reject the null hypothesis that
+the mean life expectancy is 60 years in support of the alternative hypothesis
+that the mean life expectancy is less than 60 years.
+
+### one-sided test, greater
+
+We run a t-test with the null hypothesis that the mean life expectancy is 60 years,
+with the alternative hypothesis being that the life expectancy is greater than 60 years.
+
+```{r}
+# run one-sided t-test with null hypothesis of mean as 60, alternative greater than 60
+results <- my_t.test(my_gapminder$lifeExp, "greater", 60)
+results
+```
+
+Using a p-value cut-off at $\alpha = 0.05$, we can see that a p-value of 
+`r results[[4]]` implies that we cannot reject the null hypothesis. 
+In other words, we do not have sufficient evidence to reject the null hypothesis that
+the mean life expectancy is 60 years in support of the alternative hypothesis
+that the mean life expectancy is greater than 60 years.
+
+# ```my_lm``` Tutorial
