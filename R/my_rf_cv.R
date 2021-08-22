@@ -46,3 +46,4 @@ my_rf_cv <- function(k) {
   avg_mse <- cum_mse / k
   return(avg_mse)
 }
+utils::globalVariables("my_penguins")
