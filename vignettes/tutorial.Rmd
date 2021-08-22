@@ -19,4 +19,25 @@ knitr::opts_chunk$set(
 library(STAT302PACKAGE)
 ```
 
-this is the vignette
+# Introduction
+
+The STAT302PACKAGE contains four main functions (in addition to some 
+other minor ones):
+
+* ```my_t.test```, a function which computes a one sample t-test 
+* ```my_lm```, a function which fits a linear model 
+* ```my_knn_Cv```, a function which trains a n-nearest neighbors model using 
+k-fold cross-validation
+* ```my_rf_cv``, a function which trains a random forest model using k-fold 
+cross-validation
+
+To install and use this package, run the following commands in console:
+
+```{r, eval=FALSE}
+# install and load package
+devtools::install_github("dzeng8/STAT302PACKAGE")
+library(STAT302PACKAGE)
+```
+
+# ```my_t.test``` Tutorial
+
