@@ -28,14 +28,14 @@ k-fold cross validation from the given input data
 }
 \examples{
 data("my_penguins")
-data <- my_penguins[c("bill_length_mm",
+penguin_data <- my_penguins[c("bill_length_mm",
                   "bill_depth_mm",
                   "flipper_length_mm",
                   "body_mass_g",
                   "species")]
-data <- as.data.frame(data)
+penguin_data <- as.data.frame(penguin_data)
 # remove rows containing NA values
-data_noNA <- na.omit(data)
+data_noNA <- na.omit(penguin_data)
 # split data into predictors and outcome
 train <- data_noNA[, 1:4]
 cl <- data_noNA[, 5]
