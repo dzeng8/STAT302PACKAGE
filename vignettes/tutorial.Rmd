@@ -153,3 +153,67 @@ well in predicting the life expectancy for the continents Europe and Oceania.
 We conclude that the model fits well to the data for Europe and Oceania, but 
 not to the data for Africa, Americas, and Asia.
 
+# ```my_knn_cv``` Tutorial
+
+Here we demonstrate the ```my_knn_cv``` function using the ```my_penguins``` dataset.
+
+We will predict the output class ```species``` using covariates 
+```bill_length_mm```, ```bill_depth_mm```, ```flipper_length_mm```, and ```body_mass_g```
+using 5-fold cross validation. We train 10 different models using k-nearest 
+neighbors ranging from 1 to 10. We display the training misclassification rate
+and the CV misclassification rate in a table.
+
+```{r}
+# load my_penguins data and extract relevant variables
+penguin_data <- my_penguins[c("bill_length_mm",
+                  "bill_depth_mm",
+                  "flipper_length_mm",
+                  "body_mass_g",
+                  "species")]
+penguin_data <- as.data.frame(penguin_data)
+# remove rows containing NA values
+data_noNA <- na.omit(penguin_data)
+# split data into predictors and outcome
+train <- data_noNA[, 1:4]
+cl <- data_noNA[, 5]
+
+# demonstrate function with 5-fold cv with k-nearest neighbors ranging from
+# 1 to 10
+training_misclass_rate <- rep(NA, 10)
+cv_misclass_rate <- rep(NA, 10)
+for (i in (1: 10)) {
+  results <- my_knn_cv(train, cl, i, 5)
+  # compute training misclassification rate
+  predicted <- results[[1]]
+  misclass_rate <- sum(predicted != cl) / length(cl)
+  training_misclass_rate[i] = misclass_rate
+  # compute cv misclassification rate
+  cv_misclass_rate[i] <- results[[2]]
+}
+
+# create table of training misclassification rate and cv misclassification rate
+# for k-nearest neighbors ranging from 1 to 10
+results_table <- cbind(training_misclass_rate, cv_misclass_rate)
+colnames(results_table) <- c("Training Misclassification Rate", 
+                             "CV Misclassification Rate")
+rownames(results_table) <- c("1-nn", "2-nn", "3-nn", "4-nn", "5-nn",
+                               "6-nn", "7-nn", "8-nn", "9-nn", "10-nn")
+results_table
+```
+
+Based on the training misclassification rate, we would choose the 1-nn model
+because this has the lowest misclassification rate. Based on the CV misclassification
+rate, we would choose the 1-nn model because this also has the lowest misclassification
+rate. 
+
+In practice, we would want to choose the model with the lowest CV misclassification
+rate. This is because the process of cross-validation involves training a model
+on a subset of the data and then testing the model on the other part of the data 
+which the trained model has not seen before. This process repeats $k$ times 
+(in k-fold cross validation), each time on different subsets of the data.
+This is useful because it allows us to evaluate the performance of the model 
+and ability to generalize on unseen data.
+We do not want to choose a model based on the training misclassification rate 
+because evaluating the model on the same data set used to train it would give
+a more optimistic (and unrealistic) evaluation of the model. Therefore we would
+choose the 1-nn model in practice based on cross-validation misclassification rate.
