@@ -26,9 +26,9 @@ other minor ones):
 
 * ```my_t.test```, a function which computes a one sample t-test 
 * ```my_lm```, a function which fits a linear model 
-* ```my_knn_Cv```, a function which trains a n-nearest neighbors model using 
+* ```my_knn_cv```, a function which trains a n-nearest neighbors model using 
 k-fold cross-validation
-* ```my_rf_cv``, a function which trains a random forest model using k-fold 
+* ```my_rf_cv```, a function which trains a random forest model using k-fold 
 cross-validation
 
 To install and use this package, run the following commands in console:
@@ -48,8 +48,8 @@ The input data are measurements of people's life expectancy at birth, in years.
 
 ### two-sided Test
 
-We run a t-test with the null hypothesis that the mean life expectancy is 60 years,
-with the alternative hypothesis being that the life expectancy is not 60 years.
+We run a t-test with the null hypothesis being that the mean life expectancy is 60 years
+and with the alternative hypothesis being that the life expectancy is not 60 years.
 
 ```{r}
 # run two-sided t-test with null hypothesis of mean as 60
@@ -59,14 +59,14 @@ results
 
 Using a p-value cut-off at $\alpha = 0.05$, we can see that a p-value of 
 `r results[[4]]` implies that we cannot
-reject the null hypothesis. In other words, there is no evidence to reject the
+reject the null hypothesis. In other words, there is not enough evidence to reject the
 null hypothesis that the mean life expectancy is 60 in support of the alternative
 hypothesis that the mean life expectancy is not 60.
 
 ### one-sided test, less
 
-We run a t-test with the null hypothesis that the mean life expectancy is 60 years,
-with the alternative hypothesis being that the life expectancy is less than 60 years.
+We run a t-test with the null hypothesis being that the mean life expectancy is 60 years
+and with the alternative hypothesis being that the life expectancy is less than 60 years.
 
 ```{r}
 # run one-sided t-test with null hypothesis of mean as 60, alternative less than 60
@@ -82,8 +82,8 @@ that the mean life expectancy is less than 60 years.
 
 ### one-sided test, greater
 
-We run a t-test with the null hypothesis that the mean life expectancy is 60 years,
-with the alternative hypothesis being that the life expectancy is greater than 60 years.
+We run a t-test with the null hypothesis being that the mean life expectancy is 60 years
+and with the alternative hypothesis being that the life expectancy is greater than 60 years.
 
 ```{r}
 # run one-sided t-test with null hypothesis of mean as 60, alternative greater than 60
@@ -113,7 +113,7 @@ See that the coefficient on the ```gdpPercap``` variable is `r results[2, 1]`,
 which can be interpreted as meaning life expectancy is expected to increase 
 by `r results[2, 1]` years per unit increase in ```gdpPercap```.
 
-We can see that the hypothesis test associated with ```gdpPercap``` is
+We can see that the hypothesis test associated with the ```gdpPercap``` covariate is
 $H_0 : \beta_{gdpPercap} = 0$ and $H_a : \beta_{gdpPercap} \neq 0$. In other words,
 the null hypothesis is that the coefficient of ```gdpPercap``` is equal to 0
 while the alternative hypothesis is that the coefficient is not equal to 0. 
@@ -244,18 +244,34 @@ for (folds in c(2, 5, 10)) {
 }
 ```
 
-We generate a boxplot of the data to visualize the distribution of the average
+We generate boxplots of the data to visualize the distribution of the average
 mean squared error for each of the chosen number of folds. 
 
 ```{r,  fig.width=7}
-# create boxplot
-
-ggplot2::ggplot(data = mse_df, ggplot2::aes(x = fold, y = mse)) +
-  ggplot2::labs(title = "Average Mean Squared Error", 
+# create boxplot, 2-fold cv
+ggplot2::ggplot(data = mse_df[1:30,], ggplot2::aes(x = fold, y = mse)) +
+  ggplot2::labs(title = "Average Mean Squared Error, 30 Simulations", 
                 x = "Number of Folds",
                 y = "Mean Squared Error") +
   ggplot2::geom_boxplot(fill = "lightblue") +
   ggplot2::theme_bw() 
+
+# create boxplot, 5-fold cv
+ggplot2::ggplot(data = mse_df[31:60,], ggplot2::aes(x = fold, y = mse)) +
+  ggplot2::labs(title = "Average Mean Squared Error, 30 Simulations", 
+                x = "Number of Folds",
+                y = "Mean Squared Error") +
+  ggplot2::geom_boxplot(fill = "lightblue") +
+  ggplot2::theme_bw() 
+
+# create boxplot, 10-fold cv
+ggplot2::ggplot(data = mse_df[61:90,], ggplot2::aes(x = fold, y = mse)) +
+  ggplot2::labs(title = "Average Mean Squared Error, 30 Simulations", 
+                x = "Number of Folds",
+                y = "Mean Squared Error") +
+  ggplot2::geom_boxplot(fill = "lightblue") +
+  ggplot2::theme_bw() 
+
 ```
 
 We can see that as the number of folds increases, the range of values for the 
