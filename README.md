@@ -17,6 +17,8 @@ You can install the released version of STAT302PACKAGE using:
 devtools::install_github("dzeng8/STAT302PACKAGE")
 ```
 
+## Use 
+
 To view vignettes, run the following code:
 
 ``` r

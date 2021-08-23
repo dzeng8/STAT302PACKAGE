@@ -217,3 +217,65 @@ We do not want to choose a model based on the training misclassification rate
 because evaluating the model on the same data set used to train it would give
 a more optimistic (and unrealistic) evaluation of the model. Therefore we would
 choose the 1-nn model in practice based on cross-validation misclassification rate.
+
+# ```my_rf_cv``` Tutorial
+
+This function uses the ```my_penguins``` data internally and trains a random 
+forest model which predicts ```body_mass_g``` using covariates ```bill_length_mm```, 
+```bill_depth_mm```, and ```flipper_length_mm```. It utilizes k-fold cross validation,
+so we will run our function using 2-fold, 5-fold, and 10-fold cross validation. 
+We generate 30 iterations of a random forest model for each value of $k$.
+
+```{r}
+# store results in a data frame
+mse_df <- data.frame(matrix(nrow = 0, ncol = length(2))) 
+# run model on 2, 5, and 10 folds
+for (folds in c(2, 5, 10)) {
+  # generate model 30 times and store mse in a vector
+  mse_vector <- rep(NA, 30)
+  for (i in (1:30)) {
+    avg_mse <- my_rf_cv(folds)
+    mse_vector[i] <- avg_mse
+  }
+  # store results in aggregate data frame
+  new_df <- data.frame(mse = mse_vector, 
+                       fold = rep(as.character(folds), 30))
+  mse_df <- rbind(mse_df, new_df)
+}
+```
+
+We generate a boxplot of the data to visualize the distribution of the average
+mean squared error for each of the chosen number of folds. 
+
+```{r,  fig.width=7}
+# create boxplot
+
+ggplot2::ggplot(data = mse_df, ggplot2::aes(x = fold, y = mse)) +
+  ggplot2::labs(title = "Average Mean Squared Error", 
+                x = "Number of Folds",
+                y = "Mean Squared Error") +
+  ggplot2::geom_boxplot(fill = "lightblue") +
+  ggplot2::theme_bw() 
+```
+
+We can see that as the number of folds increases, the range of values for the 
+average mean squared error decreases.
+
+We also create a table which displays the average CV estimate and the standard 
+deviation of the CV estimates for each number of folds used
+
+```{r}
+# create table of mean and standard deviation of MSE across each fold
+avg_col <- rbind(mean(mse_df[1:30,1]), mean(mse_df[31:60,1]), mean(mse_df[61:90,1]))
+sd_col <- rbind(sd(mse_df[1:30,1]), sd(mse_df[31:60,1]), sd(mse_df[61:90,1]))
+results_table <- cbind(avg_col, sd_col)
+rownames(results_table) <- c("2-fold CV", "5-fold CV", "10-fold CV")
+colnames(results_table) <- c("Mean of MSE", "Standard Deviation of MSE")
+results_table
+```
+
+We can see that as the number of folds increases, the mean MSE decreases
+and the standard deviation of the MSE decreases. This is most likely due to the 
+fact that as we increase the number of folds, we are increasing the size of our
+training set and decreasing the size of our test set, leading to more precise 
+and accurate predictions. 
